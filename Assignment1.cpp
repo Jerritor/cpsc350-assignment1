@@ -336,8 +336,8 @@ int Assignment1::sumLengths(string dna) //sum of the lengths
 string Assignment1::readFile(string file) //processes file into a string
 {
 	string processed; //return string
-
 	ifstream inputfile; //input stream
+
 	inputfile.open(file); //stream opens file
 
 	//Check if file can be read
@@ -350,15 +350,48 @@ string Assignment1::readFile(string file) //processes file into a string
 	string currentline;
 	while (getline(inputfile, currentline)) //checks if file can be read
 	{
-		if(currentline.find_first_not_of(" ") != string::npos)
+		if(currentline.find_first_not_of(" ") != string::npos) //if there's a space in a line doesn't equal 'no matches'
 		{
-			processed.append(currentline);
-			processed.append("."); //delimeter
+			for (int i = 0; i < currentline.length(); i++)
+			{
+				char curr = currentline[i];
+
+				switch(curr)
+				{
+					case 'a':
+					case 'A':
+						processed.append("A");
+						cout << 'A';
+						break;
+					case 't':
+					case 'T':
+						processed.append("T");
+						cout << 'T';
+						break;
+					case 'g':
+					case 'G':
+						processed.append("G");
+						cout << 'G';
+						break;
+					case 'c':
+					case 'C':
+						processed.append("C");
+						cout << 'C';
+						break;
+				}
+			}
+
+			if (processed[processed.length()-1] != '.') //if there isn't a delimeter
+			{
+				cout << '.';
+				processed.append("."); //delimeter
+			}
 		}
 
 		//inputfile >> currentline;
 		//cout << currentline << endl;
 	}
+	cout << endl;
 
 	inputfile.close();
 	return processed;
@@ -370,8 +403,8 @@ Assignment1::Assignment1(string l)
 	string processedDna = readFile(l);
 	//cout << processedDna << endl;
 	//processedDna.assign(capitalize(processedDna));
-	
-	cout << processedDna << endl;
+
+	//cout << processedDna << endl;
 
 	/**
 	cout << "======" << endl;
