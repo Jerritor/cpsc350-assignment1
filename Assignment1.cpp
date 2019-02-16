@@ -6,9 +6,7 @@
 
 using namespace std;
 
-
-
-void Assignment1::nucleotideProb(string dna,int sum, double &aProb, double &tProb, double &gProb, double &cProb)
+void Assignment1::nucleotideProb(string dna,int sum, double &aProb, double &tProb, double &gProb, double &cProb) //calcualtes all nucelotide probs
 {
 	int a = 0;
 	int t = 0;
@@ -353,7 +351,7 @@ void Assignment1::nucleotideProb(string dna,int sum, double &aProb, double &tPro
 
 }
 
-double Assignment1::varLengths(string dna, double mean, int lines)
+double Assignment1::varLengths(string dna, double mean, int lines) //variance
 {
 	double numerator = 0;
 	int lineLength = 0; //length of each line
@@ -456,7 +454,7 @@ string Assignment1::readFile(string file) //processes file into a string
 	return processed;
 }
 
-void Assignment1::generateDNA(double mean, double std, double a, double t, double g, double c)
+void Assignment1::generateDNA(double mean, double std, double a, double t, double g, double c) //generates the 1000 normally distributed strings
 {
 	//1000
 	ofstream outputfile ("jerrick.out", ios::app);
@@ -514,13 +512,10 @@ void Assignment1::generateDNA(double mean, double std, double a, double t, doubl
 		}
 		//cout << nmlRndomD << endl;
 	}
-	cout << "========" << endl;
-
-
 	outputfile.close();
 }
 
-void Assignment1::processList(string file,bool firstFile)
+void Assignment1::processList(string file,bool firstFile) //process a list
 {
 	string processedDna = readFile(file);
 	cout << "============" << file << "============" << endl;
@@ -570,10 +565,11 @@ void Assignment1::processList(string file,bool firstFile)
 	generateDNA(mean, std, aProb, tProb, gProb, cProb);
 
 	cout << "Outputting onto jerrick.out..." << endl;
+	cout << "========" << endl;
 	processNewList();
 }
 
-void Assignment1::processNewList()
+void Assignment1::processNewList() //command line ui
 {
 	cout << "Do you want to process another list? (y/n): ";
 	string input;
@@ -597,14 +593,14 @@ void Assignment1::processNewList()
 		else
 		{
 			inputfile.close();
-			cout << "===============" << endl;
 			processList(input, false);
 		}
 	}
 	else if (input == "n") {}
 	else
 	{
-		cout << "Please enter 'y' or 'n' to select your option.";
+		cout << "Please enter 'y' or 'n' to select your option." << endl;
+		processNewList();
 	}
 }
 

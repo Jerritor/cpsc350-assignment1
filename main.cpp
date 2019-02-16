@@ -17,13 +17,14 @@ int main(int argc, char** argv)
 	}
 	else
 	{
-		//if more than one argument
+		//if not one argument
 		cout << "Args: " << argc << endl;
 
 		for (int i = 0; i < argc; i++)
 		{
 			cout << argv[i] << endl;
 		}
+		cout << "./a.out <filename>" << endl;
 	}
 
 	cout << "Program exited sucesfully." << endl;
